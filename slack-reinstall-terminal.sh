@@ -15,7 +15,7 @@ hdiutil attach /Users/Shared/slack-desktop-latest.dmg -nobrowse
 
 # Copy Slack to the current console user's ~/Applications folder instead of the /Applications folder.
 launchctl asuser $uid mkdir -p /Users/$loggedInUser/Applications
-launchctl asuser $uid mkdir -p cp -r /Volumes/Slack/Slack.app /Users/$loggedInUser/Applications/
+launchctl asuser $uid cp -r /Volumes/Slack/Slack.app /Users/$loggedInUser/Applications/
 
 # Make sure Slack is not running before you remove the /Applications/Slack.app, then remove it.
 killall Slack
