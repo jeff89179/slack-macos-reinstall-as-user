@@ -13,9 +13,11 @@ curl -o /Users/Shared/slack-latest.dmg "https://slack.com/api/desktop.latestRele
 # Silently Mount the DMG
 hdiutil attach /Users/Shared/slack-desktop-latest.dmg -nobrowse
 
-# Copy Slack to the current console user's ~/Applications folder instead of the /Applications folder.
-launchctl asuser $uid mkdir -p /Users/$loggedInUser/Applications
-launchctl asuser $uid cp -r /Volumes/Slack/Slack.app /Users/$loggedInUser/Applications/
+# Copy Slack to the current console user's ~/Applications folder instead of the /Applications folder, update ownership to current console user.
+mkdir -p /Users/$loggedInUser/Applications
+chown -R /Users/$loggedInUser/Applications
+cp -r /Volumes/Slack/Slack.app /Users/$loggedInUser/Applications/
+chown -R $loggedInUser:staff /Users/$loggedInUser/Applications/Slack.app
 
 # Make sure Slack is not running before you remove the /Applications/Slack.app, then remove it.
 killall Slack
