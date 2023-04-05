@@ -22,3 +22,6 @@ hdiutil detach -force /Volumes/Slack
 
 # Remove the Slack DMG
 rm /Users/Shared/slack-latest.dmg
+
+# Fix "Slack is damaged" error
+xattr -d com.apple.quarantine /Users/$loggedInUser/Applications/Slack.app
